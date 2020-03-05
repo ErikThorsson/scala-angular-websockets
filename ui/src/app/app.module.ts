@@ -8,6 +8,7 @@ import { RouteExampleComponent } from './route-example/route-example.component';
 
 import { AppService } from './app.service';
 import { AppHttpInterceptorService } from './http-interceptor.service';
+import { WebsocketService } from './services/websocket.service';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
+    WebsocketService,
     AppService,
     {
       multi: true,

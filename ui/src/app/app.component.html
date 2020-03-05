@@ -3,7 +3,18 @@
   
   <div class="post-request-test">
     <h3>Test GET Request</h3>
-    <button (click)="postData()">ClickMe :)</button>
+    <button (click)="postData()">Click Me</button>
     <h5>Response: {{postRequestResponse}}</h5>
+  </div>
+
+  <div>
+    <h3>Websocket Test</h3>
+    <button (click)="connect()">Connect</button>
+    connection status: {{websocketService.connected}}
+    <button (click)="sendWebsocketEvent()">Send</button>
+    <br>
+    <div>
+    {{websocketService.websocketMessages}}
+    </div>
   </div>
 </div>
