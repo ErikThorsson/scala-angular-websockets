@@ -8,7 +8,7 @@ export class WebsocketService {
   private socket: any;
   private connected = false;
   subscriptions: any;
-  websocketMessages: string | undefined;
+  websocketMessages = '';
 
   private websocketConnectedService = new BehaviorSubject<boolean>(false);
   websocketConnectedObservable = this.websocketConnectedService.asObservable();
@@ -48,7 +48,7 @@ export class WebsocketService {
       this.socket.addEventListener(WebsocketAction.WS_MESSAGE, (message: MessageEvent) => {
         console.log('Message Received');
         console.log(message);
-        this.websocketMessages += message + '<br>';
+        this.websocketMessages += JSON.stringify(message.data) + '<br>';
       });
   }
 

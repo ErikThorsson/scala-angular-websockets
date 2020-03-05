@@ -13,15 +13,9 @@ import play.api.mvc.{AbstractController, ControllerComponents, WebSocket}
 import akka.stream.scaladsl._
 import java.net.{URL, HttpURLConnection}
 import play.api.libs.json.Json
-
-import services.ChatServiceActor
 import services.MyWebSocketActor
 
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
 @Singleton
 class HomeController @Inject() (cc: ControllerComponents)(implicit system: ActorSystem, mat: Materializer,
 assetsFinder: AssetsFinder)
@@ -32,16 +26,6 @@ assetsFinder: AssetsFinder)
         MyWebSocketActor.props(out)
       }
   }
-  
-  /**
-   * Create an Action to render an HTML page with a welcome message.
-   * The configuration in the `routes` file means that this method
-   * will be called when the application receives a `GET` request with
-   * a path of `/`.
-   */
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
-  }
 
   def getTest = Action {
     println("hit get endpoint")
@@ -50,9 +34,10 @@ assetsFinder: AssetsFinder)
     Ok(Json.obj("content" -> mockGet()))
   }
 
+  // todo - concat more than one symbol into the request
   @throws(classOf[java.io.IOException])
   @throws(classOf[java.net.SocketTimeoutException])
-  def get(url: String,
+  def getYahooFinanceQuote(url: String,
         connectTimeout: Int = 5000,
         readTimeout: Int = 5000,
         requestMethod: String = "GET") =
